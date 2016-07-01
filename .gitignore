@@ -1,0 +1,10 @@
+*.pyc
+static
+static_collected/
+htmlcov/
+.idea/
+activate
+**/migrations/
+.DS_Store
+db.sqlite3
+tgcvenv
