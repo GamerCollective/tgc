@@ -1,6 +1,7 @@
 appnope==0.1.0
 backports.shutil-get-terminal-size==1.0.0
 decorator==4.0.10
+dj-database-url==0.4.1
 Django==1.9.7
 gnureadline==6.3.3
 gunicorn==19.6.0
@@ -15,3 +16,4 @@ ptyprocess==0.5.1
 simplegeneric==0.8.1
 six==1.10.0
 traitlets==4.2.1
+whitenoise==3.2
