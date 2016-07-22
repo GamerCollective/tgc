@@ -23,7 +23,7 @@ from tgcprofile.urls import tgcprofile_url_patterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^/$', HomeView, name="home_view")
+    url(r'^$', HomeView.as_view(), name="home_view")
 ]
 
 urlpatterns += identity_url_patterns
