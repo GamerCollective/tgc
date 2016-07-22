@@ -17,11 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from .views import HomeView
 from identities.urls import identity_url_patterns
 from tgcprofile.urls import tgcprofile_url_patterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^/$', )
 ]
 
 urlpatterns += identity_url_patterns
