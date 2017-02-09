@@ -1,0 +1,3 @@
+from add_identity_view import AddIdentityView
+from dashboard_view import DashboardView
+from delete_identity_view import DeleteIdentityView

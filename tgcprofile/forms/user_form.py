@@ -8,14 +8,3 @@ class UserForm(ModelForm):
     class Meta:
         model = User
         fields = ["email", "username", "password"]
-
-
-class LoginForm(Form):
-    username = CharField(max_length=35)
-    password = CharField(widget=PasswordInput)
-
-
-# class UserProfileForm(ModelForm):
-#     class Meta:
-#         model = UserProfile
-#         exclude = ['user']

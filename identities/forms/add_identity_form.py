@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Identity
+from identities.models import Identity
 
 
 class AddIdentityForm(ModelForm):
