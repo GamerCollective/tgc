@@ -3,8 +3,8 @@ from django.core.urlresolvers import reverse
 from django.views.generic import CreateView
 from django.shortcuts import redirect
 
-from identities.forms import AddIdentityForm
-from identities.models import Identity
+from identity.forms import AddIdentityForm
+from identity.models import Identity
 
 
 class AddIdentityView(LoginRequiredMixin, CreateView):
