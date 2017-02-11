@@ -1,0 +1,1 @@
+from add_collective import AddCollectiveView

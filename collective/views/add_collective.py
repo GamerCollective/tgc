@@ -5,17 +5,15 @@ from django.core.urlresolvers import reverse
 from django.views.generic import CreateView
 from django.shortcuts import redirect
 
-from identity.forms import AddIdentityForm
-from identity.models import Identity
+from ..forms import AddCollectiveForm
+from ..models import Collective
 
 
-class AddIdentityView(LoginRequiredMixin, CreateView):
-    model = Identity
+class AddCollectiveView(LoginRequiredMixin, CreateView):
+    model = Collective
     login_url = "/account/login/"
-    form_class = AddIdentityForm
+    form_class = AddCollectiveForm
     template_name = "add.html"
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        form.save()
         return redirect(reverse("dashboard_view"))

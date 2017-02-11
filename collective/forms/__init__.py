@@ -1,0 +1,1 @@
+from add_collective_form import AddCollectiveForm
