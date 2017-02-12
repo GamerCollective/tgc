@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 import jwt
 
-from common import email_domain, set_invite_token, get_invite_token
+from common import email_domain, set_invite_token, get_invite_token, invalidate_invite_token
 
 
 Payload = namedtuple("Payload", ["email", "exp", "collective_pk", "inviter_pk"])
@@ -85,7 +85,7 @@ def get_payload_from_token(token):
 
 def validate_token(email, token):
     """
-    Attempts to retreive a ``token`` from the cache under the key ``email``. If the token in the cache matches the token
+    Attempts to retrieve a ``token`` from the cache under the key ``email``. If the token in the cache matches the token
     passed in then the token is valid and the invite can continue
 
     Args:
@@ -99,3 +99,16 @@ def validate_token(email, token):
     if cached_token:
         return cached_token == token
     return False
+
+
+def invalidate_token(email):
+    """
+    Once a token has been validated and accepted delete it so it can't be reused.
+
+    Args:
+        email (unicode, str):
+
+    Returns:
+
+    """
+    invalidate_invite_token(email)

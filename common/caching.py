@@ -29,3 +29,13 @@ def get_invite_token(email):
         str
     """
     return cache.get(email)
+
+
+def invalidate_invite_token(email):
+    """
+    Delete the key for a token so it can't be reused.
+
+    Args:
+        email (str, unicode): An email address
+    """
+    cache.delete(email)

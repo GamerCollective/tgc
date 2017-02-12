@@ -2,12 +2,14 @@ from __future__ import unicode_literals
 
 from django.contrib import messages
 from django.core.urlresolvers import reverse
+from django.db import IntegrityError
 from django.shortcuts import render, redirect
 from django.views.generic import View
 
 from ..forms import AcceptInviteForm
 from tgcprofile.services import get_tgcuser_by_email
-from ..services import validate_token, add_tgcuser_to_collective, get_collective_by_pk, get_payload_from_token
+from ..services import (validate_token, add_tgcuser_to_collective, get_collective_by_pk, get_payload_from_token,
+                        invalidate_invite_token)
 
 
 class AcceptInviteView(View):
@@ -28,8 +30,13 @@ class AcceptInviteView(View):
         collective = get_collective_by_pk(request.POST.get("collective"))
         if request.user.is_active:
             if validate_token(request.user.email, request.GET.get("token")):
-                add_tgcuser_to_collective(request.user, collective)
-                messages.success(request, "You joined {}".format(collective.name))
+                message = "You joined {}".format(collective.name)
+                try:
+                    add_tgcuser_to_collective(request.user, collective)
+                except IntegrityError:
+                    message = "You are already a member of {}".format(collective.name)
+                invalidate_invite_token(request.user.email)
+                messages.success(request, message)
                 return redirect(reverse("dashboard_view"))
             messages.error(self.request, "Invalid token")
-            return redirect(reverse("home_view"))
+        return redirect(reverse("home_view"))
