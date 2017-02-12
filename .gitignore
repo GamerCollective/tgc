@@ -8,3 +8,4 @@ activate
 .DS_Store
 db.sqlite3
 tgcvenv
+.secrets

@@ -1,5 +1,5 @@
 """
-Intermediate model for managing memberships.
+Intermediate model for recording memberships.
 """
 from __future__ import unicode_literals
 
@@ -11,3 +11,6 @@ class Membership(models.Model):
     member = models.ForeignKey("tgcprofile.TGCUser")
     collective = models.ForeignKey("collective.Collective")
     date_joined = models.DateField(editable=False, default=timezone.now)
+
+    class Meta:
+        unique_together = ("member", "collective")

@@ -25,7 +25,10 @@ def get_tgcuser_by_email(email):
     Returns:
         TGCUser
     """
-    return TGCUser.objects.get(email__iexact=email.lower())
+    try:
+        return TGCUser.objects.get(email__iexact=email.lower())
+    except TGCUser.DoesNotExist:
+        return None
 
 
 def deactivate_tgcuser(tgcuser):

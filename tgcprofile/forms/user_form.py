@@ -6,8 +6,14 @@ from ..models import TGCUser
 
 
 class UserForm(ModelForm):
-    password = CharField(widget=PasswordInput)
-
     class Meta:
         model = TGCUser
         fields = ["email", "username", "password"]
+        widgets = {"password": PasswordInput}
+
+    def save(self, commit=True):
+        user = super(UserForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password"])
+        if commit:
+            user.save()
+        return user

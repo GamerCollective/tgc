@@ -25,4 +25,7 @@ def add_tgcuser_to_collective(member, collective):
     Returns:
         bool
     """
-    collective.membership_set.add(member)
+    from .membership import create_membership
+
+    membership = create_membership(member, collective)
+    collective.membership_set.add(membership)

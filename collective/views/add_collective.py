@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 
 from ..forms import AddCollectiveForm
 from ..models import Collective
+from ..services import add_tgcuser_to_collective
 
 
 class AddCollectiveView(LoginRequiredMixin, CreateView):
@@ -16,4 +17,6 @@ class AddCollectiveView(LoginRequiredMixin, CreateView):
     template_name = "add.html"
 
     def form_valid(self, form):
+        collective = form.save()
+        add_tgcuser_to_collective(self.request.user, collective)
         return redirect(reverse("dashboard_view"))

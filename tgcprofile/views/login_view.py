@@ -22,5 +22,7 @@ class LoginView(View):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
+            if request.GET.get("next"):
+                return redirect(request.GET.get("next"))
             return redirect(reverse("dashboard_view"))
         return redirect(reverse("login_view"))

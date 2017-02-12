@@ -1,6 +1,7 @@
 from  __future__ import unicode_literals
 
 import os
+import json
 
 import dj_database_url
 
@@ -12,8 +13,6 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4fh=6=a&&flo33kqleh90=8iq!io$(i+goic=3=@=nis*@l^n3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,6 +78,12 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -125,3 +130,11 @@ STATIC_URL = '/static/'
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+with open(PROJECT_ROOT + "/.secrets") as fp:
+    secrets = json.load(fp)
+MAILGUN_API_KEY = secrets["MAILGUN_API_KEY"]
+SECRET_KEY = secrets["SECRET_KEY"]
+INVITE_TOKEN_KEY = secrets["INVITE_TOKEN_KEY"]
+
+SITE_DOMAIN = "tgc.herokuapp.com"
