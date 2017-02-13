@@ -1,0 +1,10 @@
+tgc:
+  image: tgc
+  links:
+    - redis
+  ports:
+    - "1323:1323"
+redis:
+  image: redis
+  expose:
+    - "6379"

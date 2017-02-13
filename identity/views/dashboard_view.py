@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 
-from identities.models import Identity
+from identity.models import Identity
 
 
 class DashboardView(LoginRequiredMixin, ListView):

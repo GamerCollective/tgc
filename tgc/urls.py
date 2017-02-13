@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from .views import HomeView
-from identities.urls import identity_url_patterns
+from collective.urls import collective_url_patterns
+from identity.urls import identity_url_patterns
 from tgcprofile.urls import tgcprofile_url_patterns
 
 urlpatterns = [
@@ -26,6 +27,7 @@ urlpatterns = [
     url(r'^$', HomeView.as_view(), name="home_view")
 ]
 
+urlpatterns += collective_url_patterns
 urlpatterns += identity_url_patterns
 urlpatterns += tgcprofile_url_patterns
 urlpatterns += staticfiles_urlpatterns()
