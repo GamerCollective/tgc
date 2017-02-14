@@ -1,0 +1,27 @@
+{%  extends "base.html" %}
+{%  block main %}
+  <h1>
+    {{ collective.name }}
+  </h1>
+  <ul>
+    <li>Members: {{ collective.members.count }}</li>
+    <li>Created: {{ collective.date_created }}</li>
+    <li>{% for tag in collective.tags.all %} {{ tag.name }} | {% endfor %}</li>
+  </ul>
+  <table class="table table-hover">
+  <thead>
+  <tr>
+      <th>Name</th>
+      <th>Date Joined</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for membership in collective.membership_set.all %}
+      <tr>
+        <td><a href="#"> {{ membership.member }}</a></td>
+        <td>{{ membership.date_joined }}</td>
+      </tr>
+    {%  endfor %}
+  </tbody>
+  </table>
+{%  endblock %}

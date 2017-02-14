@@ -12,7 +12,7 @@ from ..models import TGCUser
 class AddUserView(CreateView):
     model = TGCUser
     form_class = UserForm
-    template_name = "add.html"
+    template_name = "add_tgcprofile.html"
 
     def form_valid(self, form):
         user = form.save()

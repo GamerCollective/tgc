@@ -13,8 +13,7 @@
     <title>TGC Dashboard</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    <!-- Custom styles for this template -->
     {% load staticfiles %}
     <link href="{% static "dashboard.css" %}" rel="stylesheet">
 
@@ -62,12 +61,13 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">My Collectives</a></li>
-            <li><a href="#">My Connections</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
+            <li><a href={% url "user_collective_view" %}>My Collectives</a></li>
             <li><a href="">Find A Collective</a></li>
             <li><a href="{% url "add_collective_view" %}">Start a Collective</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Add an Identity</a></li>
+            <li><a href="#">Invite a Friend</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">Contact</a></li>
@@ -77,7 +77,10 @@
           {% if messages %}
               <ul class="messages">
                   {% for message in messages %}
-                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      {{ message|safe }}
+                    </div>
                   {% endfor %}
               </ul>
           {% endif %}
@@ -92,6 +95,5 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  </body>
 </html>

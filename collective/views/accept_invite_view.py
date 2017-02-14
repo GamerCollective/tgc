@@ -1,11 +1,11 @@
 from __future__ import unicode_literals
 
-from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 from django.views.generic import View
 
+from common import messages
 from ..forms import AcceptInviteForm
 from tgcprofile.services import get_tgcuser_by_email
 from ..services import (validate_token, add_tgcuser_to_collective, get_collective_by_pk, get_payload_from_token,
@@ -23,7 +23,7 @@ class AcceptInviteView(View):
             messages.info(request, "Please log in to accept invitation")
             return redirect(reverse("login_view") + "?next={}?token={}".format(request.path, request.GET.get("token")))
         else:
-            messages.info(request, "Please sign up ")
+            messages.info(request, "Please sign up to accept invitaion")
             return redirect(reverse("add_user_view") + "?next={}?token={}".format(request.path, request.GET.get("token")))
 
     def post(self, request):
@@ -38,5 +38,5 @@ class AcceptInviteView(View):
                 invalidate_invite_token(request.user.email)
                 messages.success(request, message)
                 return redirect(reverse("dashboard_view"))
-            messages.error(self.request, "Invalid token")
+            messages.danger(self.request, "Invalid token")
         return redirect(reverse("home_view"))

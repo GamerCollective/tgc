@@ -1,0 +1,22 @@
+{%  extends "base.html" %}
+{%  block main %}
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <th>Name</th>
+      <th>Date Joined</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      <tr>
+        <td><a href={% url "collective_view" object.collective.pk %}> {{ object.collective.name }}</a></td>
+        <td>{{ object.date_joined }}</td>
+        <td>
+          <a href="#">Settings</a> | <a href="#">Leave</a>
+        </td>
+      </tr>
+    {%  endfor %}
+  </tbody>
+</table>
+{%  endblock %}
