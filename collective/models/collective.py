@@ -14,3 +14,4 @@ class Collective(models.Model):
     tags = models.ManyToManyField("collective.Tag")
     date_created = models.DateField(editable=False, default=timezone.now)
     is_public = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)

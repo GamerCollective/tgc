@@ -1,3 +1,4 @@
 from accept_invite_form import AcceptInviteForm
 from add_collective_form import AddCollectiveForm
 from invite_member_form import InviteMemberForm
+from search_collectives_form import SearchCollectivesForm

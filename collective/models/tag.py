@@ -6,4 +6,5 @@ from django.db import models
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=25, unique=True)
+    is_active = models.BooleanField(default=True)

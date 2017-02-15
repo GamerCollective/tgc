@@ -1,0 +1,28 @@
+{%  extends "base.html" %}
+{%  block main %}
+  <p>Search by tag, search by name will be implemented later</p>
+  <form class="form-inline" method="post">
+    {%  csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <th>Name</th>
+      <th>Members</th>
+      <th>Tags</th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for collective in collectives %}
+      <tr>
+        <td><a href={% url "collective_view" collective.pk %}> {{ collective.name }}</a></td>
+        <td>{{ collective.members.count }}</td>
+        <td>{% for tag in collective.tags.all %} {{ tag.name }} | {% endfor %}</td>
+        <td><a href="#">Join</a></td>
+      </tr>
+    {%  endfor %}
+  </tbody>
+</table>
+{%  endblock %}

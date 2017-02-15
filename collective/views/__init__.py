@@ -2,4 +2,5 @@ from accept_invite_view import AcceptInviteView
 from add_collective import AddCollectiveView
 from collective_view import CollectiveView
 from invite_members_view import InviteMembersView
+from search_collectives_view import SearchCollectivesView
 from user_collective_view import UserCollectiveView
