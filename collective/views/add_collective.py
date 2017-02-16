@@ -14,7 +14,7 @@ class AddCollectiveView(LoginRequiredMixin, CreateView):
     model = Collective
     login_url = "/account/login/"
     form_class = AddCollectiveForm
-    template_name = "add.html"
+    template_name = "add_collective.html"
 
     def form_valid(self, form):
         collective = form.save()

@@ -13,7 +13,7 @@ class AddIdentityView(LoginRequiredMixin, CreateView):
     model = Identity
     login_url = "/account/login/"
     form_class = AddIdentityForm
-    template_name = "add.html"
+    template_name = "add_identity.html"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
