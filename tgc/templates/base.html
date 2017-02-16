@@ -60,7 +60,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="{% url "dashboard_view" %}">Dashboard <span class="sr-only">(current)</span></a></li>
             <li><a href={% url "user_collective_view" %}>My Collectives</a></li>
             <li><a href={% url "search_collectives_view" %}>Find A Collective</a></li>
             <li><a href="{% url "add_collective_view" %}">Start a Collective</a></li>

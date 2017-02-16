@@ -12,5 +12,6 @@ collective_url_patterns = [
         url(r"^view/$", views.UserCollectiveView.as_view(), name="user_collective_view"),
         url(r"^view/(?P<collective_pk>\d+)/$", views.CollectiveView.as_view(), name="collective_view"),
         url(r"^search/$", views.SearchCollectivesView.as_view(), name="search_collectives_view"),
+        url(r"^join/(?P<collective_pk>\d+)/$", views.JoinCollectiveView.as_view(), name="join_collective_view")
     ]))
 ]

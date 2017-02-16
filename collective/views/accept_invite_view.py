@@ -23,12 +23,14 @@ class AcceptInviteView(View):
             messages.info(request, "Please log in to accept invitation")
             return redirect(reverse("login_view") + "?next={}?token={}".format(request.path, request.GET.get("token")))
         else:
-            messages.info(request, "Please sign up to accept invitaion")
-            return redirect(reverse("add_user_view") + "?next={}?token={}".format(request.path, request.GET.get("token")))
+            messages.info(request, "Please sign up to accept invitation")
+            return redirect(
+                reverse("add_user_view") + "?next={}?token={}".format(request.path, request.GET.get("token"))
+            )
 
     def post(self, request):
         collective = get_collective_by_pk(request.POST.get("collective"))
-        if request.user.is_active:
+        if request.user.is_authenticated():
             if validate_token(request.user.email, request.GET.get("token")):
                 message = "You joined {}".format(collective.name)
                 try:
@@ -39,4 +41,5 @@ class AcceptInviteView(View):
                 messages.success(request, message)
                 return redirect(reverse("dashboard_view"))
             messages.danger(self.request, "Invalid token")
+        messages.danger(request, "Must be logged in to accept an invitation")
         return redirect(reverse("home_view"))

@@ -33,12 +33,13 @@ def add_tgcuser_to_collective(member, collective):
         collective (Collective):
 
     Returns:
-        bool
+        collective.models.Membership
     """
     from .membership import create_membership
 
     membership = create_membership(member, collective)
     collective.membership_set.add(membership)
+    return membership
 
 
 def get_collectives_by_tag_names(tags):

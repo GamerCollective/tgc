@@ -20,7 +20,11 @@
         <td><a href={% url "collective_view" collective.pk %}> {{ collective.name }}</a></td>
         <td>{{ collective.members.count }}</td>
         <td>{% for tag in collective.tags.all %} {{ tag.name }} | {% endfor %}</td>
-        <td><a href="#">Join</a></td>
+        {% if collective.is_public %}
+          <td><a href={% url "join_collective_view" collective.pk %}>Join</a></td>
+        {% else %}
+          <td><a href="#" onclick="alert('Coming Soon&trade;')">Request Invite</a></td>
+        {% endif %}
       </tr>
     {%  endfor %}
   </tbody>

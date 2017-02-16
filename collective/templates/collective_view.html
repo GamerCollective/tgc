@@ -20,6 +20,7 @@
       <tr>
         <td><a href="#"> {{ membership.member }}</a></td>
         <td>{{ membership.date_joined }}</td>
+        <td>{% for game in membership.member.identity_set.all %} {{ game.game }} | {% endfor %}</td>
       </tr>
     {%  endfor %}
   </tbody>
