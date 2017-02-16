@@ -115,11 +115,3 @@ class Common(Configuration):
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
     STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-    with open(PROJECT_ROOT + "/.secrets") as fp:
-        secrets = json.load(fp)
-    MAILGUN_API_KEY = secrets["MAILGUN_API_KEY"]
-    SECRET_KEY = secrets["SECRET_KEY"]
-    INVITE_TOKEN_KEY = secrets["INVITE_TOKEN_KEY"]
-
-    SITE_DOMAIN = "tgc.herokuapp.com"
