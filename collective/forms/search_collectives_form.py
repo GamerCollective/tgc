@@ -10,7 +10,6 @@ class SearchCollectivesForm(forms.Form):
         widget=forms.TextInput(attrs={"id": "name", "class": "form-control"})
     )
     tags = forms.MultipleChoiceField(
-        # choices=[(tag.pk, tag.name) for tag in get_active_tags()],
-        choices=[],
+        choices=[(tag.pk, tag.name) for tag in get_active_tags()],
         widget=forms.SelectMultiple(attrs={'class': 'form-control'})
     )
