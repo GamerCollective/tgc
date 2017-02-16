@@ -26,8 +26,8 @@ class Prod(Common):
         }
     }
 
-    MAILGUN_API_KEY = os.environ["MAILGUN_API_KEY"]
-    SECRET_KEY = os.environ["SECRET_KEY"]
-    INVITE_TOKEN_KEY = os.environ["INVITE_TOKEN_KEY"]
+    MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY")
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    INVITE_TOKEN_KEY = os.environ.get("INVITE_TOKEN_KEY")
 
     SITE_DOMAIN = "tgc.herokuapp.com"
