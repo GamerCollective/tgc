@@ -4,6 +4,7 @@ static_collected/
 htmlcov/
 .idea/
 activate
+activate.bash
 **/migrations/
 .DS_Store
 db.sqlite3
