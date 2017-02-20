@@ -1,12 +1,17 @@
 tgc:
-  image: tgc
+  image: imauld/tgc
   links:
     - redis
   ports:
-    - "1323:1323"
-redis:
-  image: redis
-  expose:
-    - "6379"
+    - "8000:8000"
 nginx:
-  image: nginx
+  image: imauld/tgcnginx
+  links:
+    - tgc:tgc
+  ports:
+    - "80:80"
+    - "8080:8080"
+redis:
+  image: redis:latest
+  ports:
+    - "6379:6379"

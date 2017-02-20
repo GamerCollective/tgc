@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
 
 # install uwsgi now because it takes a little while
 RUN pip install uwsgi
+COPY uwsgi.ini /home/docker/tgc/
 COPY supervisor-app.conf /etc/supervisor/conf.d/
 
 # COPY requirements.txt and RUN pip install BEFORE adding the rest of your code,
