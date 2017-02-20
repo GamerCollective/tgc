@@ -22,7 +22,9 @@ COPY requirements.txt /home/docker/tgc/
 RUN pip install -r /home/docker/tgc/requirements.txt
 
 # add (the rest of) our code
-COPY . /tgc
+COPY . /home/docker/tgc
 
 EXPOSE 80
-CMD ["supervisord", "-n"]
+# CMD ["supervisord", "-n"]
+# CMD ["/usr/local/bin/uwsgi", "--ini", "/home/docker/tgc/uwsgi.ini"]
+CMD ["python", "/home/docker/tgc/manage.py", "runserver", "0.0.0.0:8000"]
