@@ -10,7 +10,7 @@ from ..services import get_active_collectives, get_collectives_by_tag_pks
 
 class SearchCollectivesView(LoginRequiredMixin, View):
     template_name = "search_collectives_view.html"
-    login_url = "account/login"
+    login_url = "/account/login/"
 
     def get(self, request):
         context = {
