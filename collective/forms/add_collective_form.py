@@ -13,7 +13,7 @@ class AddCollectiveForm(forms.ModelForm):
 
     class Meta:
         model = Collective
-        exclude = ["members"]
+        exclude = ["members", "is_active"]
 
     def __init__(self, *args, **kwargs):
         super(AddCollectiveForm, self).__init__(*args, **kwargs)
