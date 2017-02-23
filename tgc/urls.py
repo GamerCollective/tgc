@@ -19,6 +19,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from .views import HomeView
 from collective.urls import collective_url_patterns
+from feed.urls import feed_url_patterns
 from identity.urls import identity_url_patterns
 from tgcprofile.urls import tgcprofile_url_patterns
 
@@ -30,4 +31,5 @@ urlpatterns = [
 urlpatterns += collective_url_patterns
 urlpatterns += identity_url_patterns
 urlpatterns += tgcprofile_url_patterns
+urlpatterns += feed_url_patterns
 urlpatterns += staticfiles_urlpatterns()

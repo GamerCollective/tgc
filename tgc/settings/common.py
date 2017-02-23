@@ -25,6 +25,7 @@ class Common(Configuration):
         'tgcprofile',
         'collective',
         'tgc',
+        'feed',
     ]
 
     MIDDLEWARE_CLASSES = (

@@ -9,6 +9,7 @@ from .common import Common
 class Dev(Common):
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    # DEBUG = True
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -30,4 +31,4 @@ class Dev(Common):
     SECRET_KEY = os.environ.get("SECRET_KEY")
     INVITE_TOKEN_KEY = os.environ.get("INVITE_TOKEN_KEY")
 
-    SITE_DOMAIN = "localhost:8000"
+    SITE_DOMAIN = "local.tgc.dev:8000"
