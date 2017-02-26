@@ -1,0 +1,28 @@
+# tgc:
+#   image: imauld/tgc
+#   links:
+#     - redis
+#   environment:
+#     - DJANGO_CONFIGURATION=Dev
+#     - INVITE_TOKEN_KEY=${INVITE_TOKEN_KEY}
+#     - SECRET_KEY=${SECRET_KEY}
+#     - MAILGUN_API_KEY=${MAILGUN_API_KEY}
+#   ports:
+#     - "8000:8000"
+# nginx:
+#   image: imauld/tgcnginx
+#   links:
+#     - tgc:tgc
+#   ports:
+#     - "80:80"
+#     - "8080:8080"
+#   volumes:
+#     - "/var/run/docker.sock:/tmp/docker.sock:ro"
+#     - "vhost.d:/etc/nginx-app/vhost.d"
+#     - "${TGC_ROOT}/tgc/staticfiles/:/usr/share/nginx/html"
+#   environment:
+#     - "DEFAULT_HOST=local.tgc.dev"
+redis:
+  image: redis:latest
+  ports:
+    - "6379:6379"
