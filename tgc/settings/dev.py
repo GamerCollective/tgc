@@ -9,7 +9,7 @@ from .common import Common
 class Dev(Common):
     BASE_DIR = os.path.dirname(os.path.dirname(__file__))
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    # DEBUG = True
+    DEBUG = True
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

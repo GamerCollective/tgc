@@ -26,3 +26,9 @@ redis:
   image: redis:latest
   ports:
     - "6379:6379"
+webdis:
+  image: webdis
+  links:
+    - redis
+  ports:
+    - "7379:7379"

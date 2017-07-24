@@ -10,5 +10,5 @@ class DashboardView(LoginRequiredMixin, ListView):
     login_url = "/account/login/"
     template_name = "dashboard.html"
 
-    def get_queryset(self, request):
-        return get_identities_for_user(request.user)
+    def get_queryset(self):
+        return get_identities_for_user(self.request.user)
