@@ -1,30 +1,4 @@
-FROM python:2.7
-MAINTAINER Ian Auld <imauld@gmail.com>
+FROM tgc/tgc_base:0.0.1
+MAINTAINER Ian Auld<imauld@gmail.com>
 
-
-RUN apt-get update && apt-get install -y \
-    git \
-    python-dev \
-    python-setuptools \
-    supervisor \
-    sqlite3 \
-  && rm -rf /var/lib/apt/lists/*
-
-# install uwsgi now because it takes a little while
-RUN pip install uwsgi
-COPY uwsgi.ini /home/docker/tgc/
-COPY supervisor-app.conf /etc/supervisor/conf.d/
-
-# COPY requirements.txt and RUN pip install BEFORE adding the rest of your code,
-# this will cause Docker's caching mechanism to prevent re-installing (all your)
-# dependencies when you change a line or two in your app.
-COPY requirements.txt /home/docker/tgc/
-RUN pip install -r /home/docker/tgc/requirements.txt
-
-# add (the rest of) our code
-COPY . /home/docker/tgc
-
-EXPOSE 80
-# CMD ["supervisord", "-n"]
-# CMD ["/usr/local/bin/uwsgi", "--ini", "/home/docker/tgc/uwsgi.ini"]
-CMD ["python", "/home/docker/tgc/manage.py", "runserver", "0.0.0.0:8000"]
+COPY . /tgc

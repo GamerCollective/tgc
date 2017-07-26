@@ -1,0 +1,14 @@
+FROM python:2.7
+MAINTAINER Ian Auld <imauld@gmail.com>
+
+RUN mkdir tgc
+RUN apt-get update && apt-get install -y \
+    sqlite3 \
+    virtualenv \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN virtualenv venv
+RUN venv/bin/python -m pip install uwsgi
+
+COPY requirements.txt /tgc
+RUN venv/bin/python -m pip install -r /tgc/requirements.txt
