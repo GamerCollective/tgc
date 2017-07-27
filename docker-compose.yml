@@ -1,14 +1,20 @@
-# tgc:
-#   image: imauld/tgc
-#   links:
-#     - redis
-#   environment:
-#     - DJANGO_CONFIGURATION=Dev
-#     - INVITE_TOKEN_KEY=${INVITE_TOKEN_KEY}
-#     - SECRET_KEY=${SECRET_KEY}
-#     - MAILGUN_API_KEY=${MAILGUN_API_KEY}
-#   ports:
-#     - "8000:8000"
+tgc:
+ image: tgc/tgc_app:0.0.1
+ links:
+   - redis
+ environment:
+   - DJANGO_CONFIGURATION=Dev
+   - DJANGO_CONFIGURATION_MODULE=tgc.settings
+   - INVITE_TOKEN_KEY=${INVITE_TOKEN_KEY}
+   - SECRET_KEY=${SECRET_KEY}
+   - MAILGUN_API_KEY=${MAILGUN_API_KEY}
+ ports:
+   - "8000:8000"
+ command: "venv/bin/uwsgi --ini /tgc/uwsgi.ini"
+redis:
+  image: redis:latest
+  ports:
+    - "6379:6379"
 # nginx:
 #   image: imauld/tgcnginx
 #   links:
@@ -22,13 +28,9 @@
 #     - "${TGC_ROOT}/tgc/staticfiles/:/usr/share/nginx/html"
 #   environment:
 #     - "DEFAULT_HOST=local.tgc.dev"
-redis:
-  image: redis:latest
-  ports:
-    - "6379:6379"
-webdis:
-  image: webdis
-  links:
-    - redis
-  ports:
-    - "7379:7379"
+#webdis:
+#  image: donn/webdis
+#  links:
+#    - redis
+#  ports:
+#    - "7379:7379"
